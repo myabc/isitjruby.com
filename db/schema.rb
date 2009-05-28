@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090209122314) do
+ActiveRecord::Schema.define(:version => 20090527235046) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20090209122314) do
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
     t.text     "summary"
+    t.boolean  "c_extension"
   end
 
   add_index "codes", ["comments_count"], :name => "index_codes_on_comments_count"
@@ -60,12 +61,17 @@ ActiveRecord::Schema.define(:version => 20090209122314) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",        :default => ""
+    t.string   "email",         :default => ""
     t.string   "version"
+    t.string   "jruby_version"
   end
 
   add_index "comments", ["code_id"], :name => "index_comments_on_code_id"
   add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
+
+  create_table "jruby_versions", :force => true do |t|
+    t.string "version"
+  end
 
   create_table "platforms", :force => true do |t|
     t.string   "name"

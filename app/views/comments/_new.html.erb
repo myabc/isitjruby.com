@@ -6,8 +6,9 @@
     <p> <%= form.label :email %> <br/> <%= form.text_field :email, :class => 'text_field' %> </p>
     <p> <label>URL <span class="lighterblue">(optional)</span></label> <br/> <%= form.text_field :url %> </p>
     <p> <%= form.label :works_for_me %> <%= form.radio_button :works_for_me, true %> Yes <%= form.radio_button :works_for_me, false %> No</p>
-    <p> <%= form.label :version %> <br/> <%= form.text_field :version, :size => 10 %> </p>
-    <p> <%= form.label :platform_id %> <br/> <%= form.collection_select :platform_id, Platform.all, :id, :name %> </p>
+    <p> <%= form.label :version, "Code version" %> <br/> <%= form.text_field :version, :size => 10 %> </p>
+    <p> <%= form.label :jruby_version, "JRuby version" %> <br/> <%= form.collection_select :jruby_version, JrubyVersion.all.reverse, :version, :version %> </p>
+    <p style="clear: right;"> <%= form.label :platform_id %> <br/> <%= form.collection_select :platform_id, Platform.all, :id, :name %> </p>
     <p> <label>Comments <span class="lighterblue">(optional)</span></label><br/> <%= form.text_area :body, :rows => 6 %> </p>
   
     <p><%= get_captcha :rcc_pub => RECAPTCHA_PUBLIC_KEY, :rcc_priv => RECAPTCHA_PRIVATE_KEY, :options => { :theme => 'white' }  %> </p>

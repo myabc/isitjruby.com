@@ -2,7 +2,7 @@ class CodesController < ApplicationController
   def index
     respond_to do | wants | 
       @codes = codes_for params[:s]
-      wants.html { @page_title = "Community-powered gem compatibility for ruby 1.9" }
+      wants.html { @page_title = "Community-powered gem compatibility for JRuby" }
       wants.json { render :json => @codes }
       wants.xml { render :xml => @codes }
     end

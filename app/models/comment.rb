@@ -33,20 +33,20 @@ class Comment < ActiveRecord::Base
   end
   
   def to_json(options = {})
-    default_only = ["body", "name", "url", "works_for_me", "version"]
+    default_only = ["body", "name", "url", "works_for_me", "version", "jruby_version"]
     options[:only] = (options[:only] || []) + default_only
     options[:include] = {:platform => {:only => :name}}
     super(options)
   end
   
   def to_xml(options = {})
-    default_only = ["body", "name", "url", "works_for_me", "version"]
+    default_only = ["body", "name", "url", "works_for_me", "version", "jruby_version"]
     options[:only] = (options[:only] || []) + default_only
     options[:include] = {:platform => {:only => :name}}
     super(options)
   end
   
 private
-  validates_presence_of :code, :platform, :name
+  validates_presence_of :code, :platform, :name, :jruby_version
   validates_format_of :email, :with => /^([_a-z0-9\+\.\-]+\@[_a-z0-9\-]+\.[_a-z0-9\.\-]+)$/i
 end

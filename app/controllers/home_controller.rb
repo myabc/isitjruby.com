@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def show
-    @page_title = 'Community-powered gem compatibility for ruby 1.9'
+    @page_title = 'Community-powered gem compatibility for JRuby'
     unless read_fragment :controller => 'home', :action => 'show'
       @latest_feedback = Comment.latest.all(:limit => 5)
       @popular = Code.popular.all(:limit => 15)

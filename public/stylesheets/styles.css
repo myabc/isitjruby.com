@@ -225,10 +225,17 @@ span.works {
 span.fails {
 	background-color: #cc0000;
 }
+
+span.stronger {
+	font-size: 105%;
+}
+
+span.normalcase {
+	text-transform: none;
+}
 span.white {
 	color: white;
 }
-
 
 /********* COMMENTS ************/
 
@@ -289,6 +296,10 @@ div.errorExplanation {
 
 dt {
 	color: #95ABC3;
+}
+
+dt.notes {
+	padding-bottom: 7px;
 }
 
 dd {
