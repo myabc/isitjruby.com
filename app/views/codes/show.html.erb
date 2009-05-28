@@ -7,6 +7,11 @@
   <dd><%= author_links(@code.authors) %></dd>
   <dt>Summary</dt>
   <dd><%= @code.description_or_summary %></dd>
+<% if @code.dependencies and @code.dependencies.size > 0 %>
+  <dt>Dependencies</dt>
+  <dd><%= dependency_links_for(@code).join(", ") %></dd>
+<% end %>
+
 <% unless @code.c_extension.nil? %>
     <dt class="notes">Notes</dt>
 <% 
@@ -16,7 +21,7 @@ end
 if @code.c_extension == true %>
   <dd><span class="fails stronger normalcase"><%= @code.name.capitalize %> appears to contain C EXTENSIONS, which are not supported by JRuby.</span></dd>
 <% elsif @code.c_extension == false %>
-<dd><span class="works stronger normalcase">Good news! <%= @code.name.capitalize %> does not appear to contain C extensions.</span></dd>
+  <dd><span class="works stronger normalcase">Good news! <%= @code.name.capitalize %> does not appear to contain C extensions.</span></dd>
 <% end %>
 </dl>
 

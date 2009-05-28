@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
 class GemPropertyTest < Test::Unit::TestCase
   def test_with_real_gems
-    gems = [  [ "eventmachine", {:contains_c_extension=>true} ],
-              [ "tzinfo",       {:contains_c_extension=>false} ] ]
+    gems = [  [ "thin",    { :contains_c_extension=>true,  :dependencies => %w{ rack eventmachine daemons} } ],
+              [ "tzinfo",  { :contains_c_extension=>false, :dependencies => [] } ] ]
 
     gems.each do |gem|
       gem_name = gem[0]

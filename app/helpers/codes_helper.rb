@@ -28,4 +28,16 @@ module CodesHelper
       link_to(h(author.name), author.permalink)
     end.to_sentence
   end
+  
+  def dependency_link_for(gem)
+    "<a href=\"/#{gem.downcase}\">#{h(gem)}</a>"
+  end
+  
+  def dependency_links_for(code)
+    links = []
+    (code.dependencies || []).each do |d|
+      links << dependency_link_for(d.gem)
+    end
+    links
+  end
 end

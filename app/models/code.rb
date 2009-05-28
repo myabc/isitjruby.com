@@ -4,6 +4,7 @@ class Code < ActiveRecord::Base
   has_many :comments, :dependent => :destroy, :order => 'created_at desc'
   has_many :working_comments, :class_name => 'Comment', :conditions => { :works_for_me => true }
   has_many :failure_comments, :class_name => 'Comment', :conditions => { :works_for_me => false }
+  has_many :dependencies
 
   named_scope :popular, :order => 'comments_count desc'
   named_scope :unpopular, :order => 'comments_count asc'

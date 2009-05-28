@@ -1,11 +1,16 @@
 class GemProperty
-  UNSUPPORTED_DEPENDENCIES = %w{ rubyinline eventmachine }
+  UNSUPPORTED_DEPENDENCIES = %w{ rubyinline }
   
   def self.set(code)
     raise(ArgumentError, "Must provide an instance of Code") unless code.is_a?(Code)
     g = GemProperty.new(code.slug_name)
     p = g.properties
     code.c_extension = p[:contains_c_extension]
+    
+    (p[:dependencies] || []).each do |d|
+      code.dependencies << Dependency.new(:gem=>d)
+    end
+    
     code
   end
   
@@ -27,7 +32,8 @@ class GemProperty
       extract_gem
       
       output = {
-        :contains_c_extension     => contains_c_extension?
+        :contains_c_extension     => contains_c_extension?,
+        :dependencies             => dependencies
       }
     end
 
@@ -48,6 +54,7 @@ class GemProperty
   
     def download_gem
       output = `gem fetch #{@gem}`
+
       if output.match(/^Downloaded /)
         @file = output.split(" ")[1]
         return @file
@@ -76,4 +83,11 @@ class GemProperty
       false
     end
 
+    def dependencies
+      output = []
+      gem_specs.dependencies.each do |d|
+        output << d.name
+      end
+      output
+    end
 end
