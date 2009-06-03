@@ -12,12 +12,12 @@ class CodesController < ApplicationController
     @code = Code.find_by_slug_name!(params[:slug_name], :include => :comments)
     respond_to do |wants|
       wants.html do
-        @page_title = "#{@code.name} gem ruby 1.9 compatibility"
+        @page_title = "#{@code.name} gem jruby compatibility"
         @comment = Comment.new(:name => cookies[:comment_name], :email => cookies[:comment_email], :url => cookies[:comment_url])
       end
       wants.json { render :json => @code }
       wants.xml { render :xml => @code }
-      wants.rss { render :xml => rss_for(@code.comments, :feed_title => "#{@code.name}: ruby 1.9 gem compatibility", :feed_link => code_by_slug_url(@code.slug_name), :feed_description => @code.description_or_summary, :title => :description, :description => :description, :permalink => :permalink, :datetime => :updated_at) }
+      wants.rss { render :xml => rss_for(@code.comments, :feed_title => "#{@code.name}: jruby gem compatibility", :feed_link => code_by_slug_url(@code.slug_name), :feed_description => @code.description_or_summary, :title => :description, :description => :description, :permalink => :permalink, :datetime => :updated_at) }
     end
     
   rescue ActiveRecord::RecordNotFound
