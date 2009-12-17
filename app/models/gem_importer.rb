@@ -1,15 +1,16 @@
 require 'rubygems'
-require "rubygems/source_info_cache"
+
 class GemImporter
-  
+
+  GEMCUTTER_URI = 'http://gemcutter.org/'
+
   def self.import
-    a = Gem::SourceInfoCache.new
-    a.refresh(true) #seems to want an argument but never uses it...
-    a.cache_data["http://gems.rubyforge.org/"].source_index.each do |gem_name, gem|
-      Code.new_from_gem_spec(gem)
+    # Gem::SpecFetcher.fetcher.list.each { |source, gems| }
+    Gem::SpecFetcher.fetcher.list[URI.parse(GEMCUTTER_URI)].each do |g|
+      Code.new_from_gem_tuple(g)
     end
   rescue Exception => ex
     puts ex.message
   end
-  
+
 end

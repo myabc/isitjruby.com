@@ -49,9 +49,11 @@ class Code < ActiveRecord::Base
     end
   end
     
-  def self.new_from_gem_spec(spec)
-    f = find_or_initialize_by_name(spec.name.to_s)
+  def self.new_from_gem_tuple(gem_tuple)
+    f = find_or_initialize_by_name(gem_tuple[0])
     if f.new_record?
+      require 'rubygems'
+      spec = Gem::SpecFetcher.fetcher.fetch_spec(gem_tuple, URI.parse(GemImporter::GEMCUTTER_URI))
       f.attributes = {:description => spec.description, :homepage => spec.homepage, :rubyforge => spec.rubyforge_project, :summary => spec.summary}
       f.code_type = "gem"
       f.save!
