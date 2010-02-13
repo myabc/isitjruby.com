@@ -1,19 +1,12 @@
-require "#{File.dirname(__FILE__)}/../vendor/bundler_gems/environment"
+begin
+  # Require the preresolved locked set of gems.
+  require File.expand_path('../../.bundle/environment', __FILE__)
+rescue LoadError
+  raise RuntimeError, "You have not locked your bundle. Run `bundle lock`."
 
-class Rails::Boot
-  def run
-    load_initializer
-    extend_environment
-    Rails::Initializer.run(:set_load_path)
-  end
-
-  def extend_environment
-    Rails::Initializer.class_eval do
-      old_load = instance_method(:load_environment)
-      define_method(:load_environment) do
-        Bundler.require_env RAILS_ENV
-        old_load.bind(self).call
-      end
-    end
-  end
+  # Fallback on doing the resolve at runtime.
+  # This does not work with rails 2.3.5 as of bundler 0.9.5.
+  require "rubygems"
+  require "bundler"
+  Bundler.setup
 end
