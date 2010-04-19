@@ -1,42 +1,65 @@
 --- 
 dependencies: 
-- rails: = 2.3.5
-- ferret: = 0.11.6
-- will_paginate: = 2.3.11
-- ruby-recaptcha: = 1.0.0
-- newrelic_rpm: ">= 0"
-- rspec: = 1.2.9
-- rspec-rails: = 1.2.9
+  ruby-recaptcha: 
+    group: 
+    - :default
+    version: = 1.0.0
+  rails: 
+    group: 
+    - :default
+    version: ~> 2.3.5
+    require: []
+
+  newrelic_rpm: 
+    group: 
+    - :default
+    version: ">= 0"
+  rspec: 
+    group: 
+    - :test
+    version: = 1.2.9
+  rspec-rails: 
+    group: 
+    - :test
+    version: = 1.2.9
+  ferret: 
+    group: 
+    - :default
+    version: = 0.11.6
+  will_paginate: 
+    group: 
+    - :default
+    version: = 2.3.11
 specs: 
+- rake: 
+    version: 0.8.7
 - activesupport: 
     version: 2.3.5
-- actionmailer: 
-    version: 2.3.5
-- will_paginate: 
-    version: 2.3.11
 - rack: 
     version: 1.0.1
 - actionpack: 
+    version: 2.3.5
+- actionmailer: 
+    version: 2.3.5
+- activerecord: 
+    version: 2.3.5
+- activeresource: 
+    version: 2.3.5
+- ferret: 
+    version: 0.11.6
+- newrelic_rpm: 
+    version: 2.10.5
+- rails: 
     version: 2.3.5
 - rspec: 
     version: 1.2.9
 - rspec-rails: 
     version: 1.2.9
-- newrelic_rpm: 
-    version: 2.9.9
-- rake: 
-    version: 0.8.7
-- ferret: 
-    version: 0.11.6
-- activerecord: 
-    version: 2.3.5
-- activeresource: 
-    version: 2.3.5
-- rails: 
-    version: 2.3.5
 - ruby-recaptcha: 
     version: 1.0.0
-hash: c2397dcbd396cedcf5ecd4d51527d76c691b4a1d
+- will_paginate: 
+    version: 2.3.11
+hash: 574572bd10df64086c5c6526867c00c164f9112a
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

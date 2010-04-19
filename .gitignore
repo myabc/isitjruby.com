@@ -1,3 +1,4 @@
+.bundle
 log/*
 db/*.sqlite3
 db/*.sqlite3-journal
@@ -10,6 +11,3 @@ config/database.yml
 config/deploy.rb
 config/deploy/*
 config/exceptional.yml
-vendor/bundler_gems/*
-!vendor/bundler_gems/cache/
-bin/
